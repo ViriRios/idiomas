@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Curso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class CursoController extends Controller
@@ -15,7 +16,10 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $cursos = Curso::all();
+        //$cursos = Curso::all();
+
+        $cursos = Auth::user()->cursos()->get();
+
         return view('curso.cursoIndex', compact('cursos'));
     }
 
@@ -44,6 +48,8 @@ class CursoController extends Controller
             'folio' => 'required|integer|min:2|unique:App\Models\Curso,folio',
             'grupo' => 'required|string|min:2|max:3',
         ]);
+
+        $request->merge(['user_id' => $request->user()->id]);
 
         Curso::create($request->all());
 

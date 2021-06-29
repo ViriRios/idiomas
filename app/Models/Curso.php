@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Curso extends Model
 {
     use HasFactory;
-    protected $fillable = ['grupo', 'folio', 'nombre', 'dependencia', 'titular'];
+    protected $fillable = ['grupo', 'folio', 'nombre', 'dependencia', 'titular', 'user_id'];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 }

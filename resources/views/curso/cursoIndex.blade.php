@@ -22,6 +22,7 @@
                       <th class="px-4 py-3">Grupo</th>
                       <th class="px-4 py-3">Titular</th>
                       <th class="px-4 py-3">Folio</th>
+                      <th class="px-4 py-3">Usuario</th>
                       <th class="px-4 py-3">Acciones</th>
                     </tr>
                   </thead>
@@ -46,6 +47,9 @@
                       </td>
                       <td class="px-4 py-3 text-sm">
                        {{$curso->folio}}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                       {{$curso->user->name}}
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
