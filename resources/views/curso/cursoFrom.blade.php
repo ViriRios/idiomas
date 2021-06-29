@@ -5,6 +5,23 @@
         Formulario
     </h4>
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" >
+
+    @if ($errors->any())
+    <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-red">
+              <div class="flex items-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>Verifique los campos del formulario.</span>
+              </div>
+            </a>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     @if(isset($curso))
         <form action= "{{ route('curso.update', $curso) }}" method="POST"> 
              @method('PATCH')
@@ -20,7 +37,7 @@
             type="text"
             name="nombre"
             id="nombre"
-            value="{{$curso->nombre ?? '' }}" 
+            value="{{ old('nombre') ?? $curso->nombre ?? '' }}" 
             />
         </label>
         <br>
@@ -32,7 +49,7 @@
             type="text"
             name="dependencia"
             id="dependencia"
-            value="{{$curso->dependencia ?? '' }}" 
+            value="{{ old('dependencia') ?? $curso->dependencia ?? '' }}" 
             />
         </label>
         <br>
@@ -40,12 +57,17 @@
         <label class="block text-sm">
             <span class="text-gray-700 dark:text-gray-400">Grupo:</span>
             <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm @error('grupo') border-red-600 dark:text-gray-300 dark:bg-gray-700 focus:border-red-400 focus:outline-none focus:shadow-outline-red @enderror  dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
             type="text"
             name="grupo"
             id="grupo"
-            value="{{$curso->grupo ?? '' }}" 
+            value="{{ old('grupo') ?? $curso->grupo ?? '' }}" 
             />
+            @error('grupo')
+                <span class="text-xs text-red-600 dark:text-red-400">
+                    {{$message}}
+                </span>
+            @enderror
         </label>
         <br>
 
@@ -56,7 +78,7 @@
             type="text"
             name="titular"
             id="titular"
-            value="{{$curso->titular ?? '' }}" 
+            value="{{ old('titular') ?? $curso->titular ?? '' }}" 
             />
         </label>
         <br>
@@ -64,12 +86,17 @@
         <label class="block text-sm">
             <span class="text-gray-700 dark:text-gray-400">Folio del Curso:</span>
             <input
-            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block w-full mt-1 text-sm @error('folio') border-red-600 dark:text-gray-300 dark:bg-gray-700 focus:border-red-400 focus:outline-none focus:shadow-outline-red @enderror dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
             type="text"
             name="folio"
             id="folio"
-            value="{{$curso->folio ?? '' }}" 
+            value="{{ old('folio') ?? $curso->folio ?? '' }}" 
             />
+            @error('folio')
+                <span class="text-xs text-red-600 dark:text-red-400">
+                    {{$message}}
+                </span>
+            @enderror
         </label>
 
         <br>

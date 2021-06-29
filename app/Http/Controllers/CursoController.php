@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Curso;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CursoController extends Controller
 {
@@ -36,6 +37,14 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'titular' => 'required|string|max:255',
+            'dependencia' => 'required|string|max:255',
+            'folio' => 'required|integer|min:2|unique:App\Models\Curso,folio',
+            'grupo' => 'required|string|min:2|max:3',
+        ]);
+
         Curso::create($request->all());
 
         return redirect()->route('curso.index');
@@ -72,6 +81,14 @@ class CursoController extends Controller
      */
     public function update(Request $request, Curso $curso)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'titular' => 'required|string|max:255',
+            'dependencia' => 'required|string|max:255',
+            'folio' => ['required', 'integer', 'min:2', Rule::unique('cursos')->ignore($curso->id)],
+            'grupo' => 'required|string|min:2|max:3',
+        ]);
+
         Curso::where('id', $curso->id)->update($request->except('_token', '_method'));
 
         return redirect()->route('curso.show', $curso);
