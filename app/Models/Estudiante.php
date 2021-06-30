@@ -15,4 +15,10 @@ class Estudiante extends Model
     {
         return $this->belongsToMany(Curso::class);
     }
+
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class);
+    }
+    
 }

@@ -86,7 +86,7 @@
                       d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
                     ></path>
                   </svg>
-                  <span class="ml-4">Menú</span>
+                  <span class="ml-4">Asistencias</span>
                 </span>
                 <svg
                   class="w-4 h-4"
@@ -115,7 +115,12 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="#">Sub Menu</a>
+                    <a class="w-full" href="{{ route('asistencia.formEntrada') }}">Entrada</a> 
+                  </li>
+                  <li
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                  >
+                    <a class="w-full" href="{{ route('asistencia.formSalida') }}">Salida</a> 
                   </li>
                 </ul>
               </template>

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\AsistenciaController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -48,3 +49,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::post('curso/{curso}/agrega-estudiante', [CursoController::class, 'agregaEstudiante'])->name ('curso.agrega-estudiante'); 
 
 Route::resource('curso', CursoController::class)->middleware('verified');
+
+Route::get('asistencia/entrada' , [AsistenciaController::class, 'formEntrada'])->name('asistencia.formEntrada');
+Route::post('asistencia/entrada', [AsistenciaController::class, 'registrarEntrada'])->name('asistencia.registrarEntrada');
+Route::get('asistencia/salida' , [AsistenciaController::class, 'formSalida'])->name('asistencia.formSalida');
+Route::post('asistencia/salida/{asistencia}', [AsistenciaController::class, 'registrarSalida'])->name('asistencia.registrarSalida');
