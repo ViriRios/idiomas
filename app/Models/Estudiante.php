@@ -10,4 +10,9 @@ class Estudiante extends Model
     use HasFactory;
     protected $table = 'estudiantes';
     public $timestamps = false;
+
+    public function cursos()
+    {
+        return $this->belongsToMany(Curso::class);
+    }
 }

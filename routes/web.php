@@ -27,4 +27,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('curso', CursoController::class)->middleware('auth');
+Route::post('curso/{curso}/agrega-estudiante', [CursoController::class, 'agregaEstudiante'])->name ('curso.agrega-estudiante'); 
+
+Route::resource('curso', CursoController::class);//->middleware('auth');

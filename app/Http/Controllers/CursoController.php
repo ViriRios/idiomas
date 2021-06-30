@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estudiante;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,7 +65,9 @@ class CursoController extends Controller
      */
     public function show(Curso $curso)
     {
-        return view('curso.cursoShow', compact('curso'));
+        $estudiantes = Estudiante::get();
+         
+        return view('curso.cursoShow', compact('curso', 'estudiantes'));
     }
 
     /**
@@ -111,4 +114,20 @@ class CursoController extends Controller
         $curso->delete();
         return redirect()->route('curso.index');
     }
+
+    /**
+     * Agrega estudiante a curso.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Curso  $curso
+     * @return \Illuminate\Http\Response
+     */
+
+    public function agregaEstudiante(Request $request, Curso $curso)
+    {
+        $curso->estudiantes()->sync($request->estudiante_id);
+
+        return redirect()->route('curso.show', $curso);
+    }
+
 }

@@ -8,10 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Curso extends Model
 {
     use HasFactory;
+    protected $table = 'cursos';
     protected $fillable = ['grupo', 'folio', 'nombre', 'dependencia', 'titular', 'user_id'];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
+    }
+
+    public function estudiantes()
+    {
+        return $this->belongsToMany(Estudiante::class);
     }
 
 }
