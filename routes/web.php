@@ -20,7 +20,7 @@ Route::get('/inicio', function() {
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -29,4 +29,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::post('curso/{curso}/agrega-estudiante', [CursoController::class, 'agregaEstudiante'])->name ('curso.agrega-estudiante'); 
 
-Route::resource('curso', CursoController::class);//->middleware('auth');
+Route::resource('curso', CursoController::class)->middleware('auth');
