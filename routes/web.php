@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\ArchivoController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -54,3 +55,6 @@ Route::get('asistencia/entrada' , [AsistenciaController::class, 'formEntrada'])-
 Route::post('asistencia/entrada', [AsistenciaController::class, 'registrarEntrada'])->name('asistencia.registrarEntrada');
 Route::get('asistencia/salida' , [AsistenciaController::class, 'formSalida'])->name('asistencia.formSalida');
 Route::post('asistencia/salida/{asistencia}', [AsistenciaController::class, 'registrarSalida'])->name('asistencia.registrarSalida');
+
+Route::get('archivo/descargar/{archivo}', [ArchivoController::class, 'descargar'])->name('archivo.descargar');
+Route::resource('archivo', ArchivoController::class)->except(['edit', 'update', 'show']);
