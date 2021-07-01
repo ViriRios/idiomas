@@ -37,9 +37,4 @@ class Asistencia extends Model
         return $this->belongsTo(User::class, 'valida_id');
     }
 
-    public function asistencias()
-    {
-        return $this->hasMany(Asistencia::class);
-    }
-
 }

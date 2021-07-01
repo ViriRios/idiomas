@@ -115,7 +115,7 @@ class AsistenciaController extends Controller
 
     public function formSalida()
     {
-        $asistencias = Asistencia::whereNull('salida')->get();
+        $asistencias = Asistencia::whereNull('salida')->with(['curso', 'estudiante'])->get();
 
         return view('asistencias.salidaForm', compact('asistencias'));
     }

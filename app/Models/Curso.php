@@ -21,4 +21,9 @@ class Curso extends Model
         return $this->belongsToMany(Estudiante::class);
     }
 
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class);
+    }
+
 }

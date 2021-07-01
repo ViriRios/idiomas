@@ -19,7 +19,7 @@ class CursoController extends Controller
     {
         //$cursos = Curso::all();
 
-        $cursos = Auth::user()->cursos()->get();
+        $cursos = Auth::user()->cursos()->with('user:id,name')->get();
 
         return view('curso.cursoIndex', compact('cursos'));
     }
